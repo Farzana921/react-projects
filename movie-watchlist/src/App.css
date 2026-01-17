@@ -1,0 +1,21 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  padding: 20px;
+}
+
+input, select, button {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+button {
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+.movie-item {
+  margin-bottom: 12px;
+}
