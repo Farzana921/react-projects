@@ -1,17 +1,11 @@
-export default function ExpenseItem (expense){
-    return (
-        <li className="Item">
-            <div>
-                <div className="ItemTitle">
-                    {ExpenseTitle}
-                </div>
-                <div className="ItemMeta">
-                    {Expense.cryptogroy}
-                </div>
-                <div className="amount">
-                    ${Expense.amount}
-                </div>
-            </div>
-        </li>
-    )
+export default function ExpenseItem({ expense }) {
+  return (
+    <li className="item">
+      <div>
+        <div className="itemTitle">{expense.title}</div>
+        <div className="itemMeta">{expense.category}</div>
+      </div>
+      <div className="amount">${expense.amount}</div>
+    </li>
+  );
 }

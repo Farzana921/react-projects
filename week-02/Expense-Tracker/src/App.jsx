@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 import Card from "./components/Card";
+import ExpenseItem from "./components/ExpenseItem";
+import ExpenseList from "./components/ExpenseList";
+
 
 function createID() {
   if (typeof crypto !== "undefined" && crypto.randomUUID) {
@@ -29,7 +32,7 @@ function App() {
       </Card>
 
       <Card title="Expenses">
-        <p>List will be here</p>
+      <ExpenseList expenses={expenses}></ExpenseList>
       </Card>
     </div>
   );
