@@ -1,9 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import Card from "./components/Card";
-import ExpenseItem from "./components/ExpenseItem";
 import ExpenseList from "./components/ExpenseList";
-
+import ExpenseForm from "./components/ExpenseForm";
 
 function createID() {
   if (typeof crypto !== "undefined" && crypto.randomUUID) {
@@ -28,11 +27,11 @@ function App() {
       </header>
 
       <Card title="Add Expense">
-        <p>Form will be here</p>
+        <ExpenseForm onAddExpense={() => {}} />
       </Card>
 
       <Card title="Expenses">
-      <ExpenseList expenses={expenses}></ExpenseList>
+        <ExpenseList expenses={expenses} />
       </Card>
     </div>
   );
