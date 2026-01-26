@@ -16,13 +16,15 @@ export default function ExpenseForm({ onAddExpense }) {
     const cleanTitle = title.trim();
     const numberAmount = Number(amount);
 
-    if (!cleanTitle) return setError("Title is required");
-    if (!Number.isFinite(numberAmount) || numberAmount <= 0)
-      return setError("Amount must be > 0");
+    if (!cleanTitle) {
+      return setError("Title is required");
+    }
 
-    // optional: send data upward (won't crash if onAddExpense is empty)
-    onAddExpense?.({
-      id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    if (!Number.isFinite(numberAmount) || numberAmount <= 0) {
+      return setError("Amount must be greater than 0");
+    }
+
+    onAddExpense({
       title: cleanTitle,
       amount: numberAmount,
       category,
@@ -58,9 +60,9 @@ export default function ExpenseForm({ onAddExpense }) {
         />
       </div>
 
-      {error ? <p className="error">{error}</p> : null}
+      {error && <div className="error">{error}</div>}
 
-      <button className="btn primary" type="button" onClick={submit}>
+      <button className="btn primary" onClick={submit}>
         Add
       </button>
     </div>

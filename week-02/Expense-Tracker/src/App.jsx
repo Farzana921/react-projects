@@ -17,6 +17,11 @@ function App() {
     { id: createID(), title: "Internet", amount: 200, category: "Bills" },
   ]);
 
+  function handleAddExpense(data) {
+    const newExpense = { id: createID(), ...data };
+    setExpenses((prev) => [newExpense, ...prev]);
+  }
+
   return (
     <div className="page">
       <header className="header">
@@ -27,7 +32,7 @@ function App() {
       </header>
 
       <Card title="Add Expense">
-        <ExpenseForm onAddExpense={() => {}} />
+        <ExpenseForm onAddExpense={handleAddExpense} />
       </Card>
 
       <Card title="Expenses">
