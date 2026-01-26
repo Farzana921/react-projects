@@ -1,7 +1,20 @@
+import { useState } from "react";
 import "./App.css";
 import Card from "./components/Card";
 
+function createID() {
+  if (typeof crypto !== "undefined" && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
 function App() {
+  const [expenses, setExpenses] = useState([
+    { id: createID(), title: "Food", amount: 100, category: "Shopping" },
+    { id: createID(), title: "Internet", amount: 200, category: "Bills" },
+  ]);
+
   return (
     <div className="page">
       <header className="header">
@@ -11,11 +24,11 @@ function App() {
         </div>
       </header>
 
-      <Card title={"Add Expense"}>
+      <Card title="Add Expense">
         <p>Form will be here</p>
       </Card>
 
-      <Card title={"Expenses"}>
+      <Card title="Expenses">
         <p>List will be here</p>
       </Card>
     </div>
