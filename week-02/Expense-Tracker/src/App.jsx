@@ -1,4 +1,5 @@
 import "./App.css";
+import Card from "./components/Card";
 
 function App() {
   return (
@@ -10,25 +11,14 @@ function App() {
         </div>
       </header>
 
-      <section className="card">
-        <div className="cardheader"> 
-          <h2 className="sectionTitle">Add Expense</h2>  
-        </div>
-        <div className="cardBody">
-         <p>Form will be here </p> 
-           </div>
-      </section>
+      <Card title={"Add Expense"}>
+        <p>Form will be here</p>
+      </Card>
 
-      <section className="card">
-        <div className="cardheader"> 
-          <h2 className="sectionTitle">Expenses</h2>  
-        </div>
-        <div className="cardBody">
-         <p>Form will be here </p> 
-           </div>
-      </section>
-    
-</div>
+      <Card title={"Expenses"}>
+        <p>List will be here</p>
+      </Card>
+    </div>
   );
 }
 
