@@ -108,14 +108,3 @@ The application currently runs only in a local development environment
 👤 Author
 Farzana
 React Learning Project – Week 1 & Week 2
-
-
----
-
-If you want, I can:
-- make it **even more professional**
-- adapt it for **university submission**
-- add a **future improvements** section
-- or tailor it for **GitHub portfolio use**
-
-Just tell me 😊
