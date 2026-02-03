@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CountryCard from "./components/CountryCard";
 import "./App.css";
 
+
 const REGIONS = ["all", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 export default function App() {
