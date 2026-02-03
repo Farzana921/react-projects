@@ -1,5 +1,5 @@
 :root {
-  --bg: #6f6f6f;
+  --bg: #909292;
   --panel: rgba(255, 255, 255, 0.18);
   --panel-2: rgba(255, 255, 255, 0.25);
   --text: #ffffff;
@@ -15,14 +15,14 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-.container {
+ .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 36px 20px 60px;
   text-align: center;
 }
 
-.header {
+ .header {
   display: flex;
   justify-content: center;
   margin-bottom: 12px;
@@ -33,7 +33,7 @@ body {
   font-size: 14px;
 }
 
-.controls {
+ .controls {
   display: flex;
   justify-content: center;
   gap: 12px;
@@ -70,12 +70,12 @@ body {
   cursor: not-allowed;
 }
 
-.select option {
+ .select option {
   color: #111;
-  background: #6f6f6f;
+  background: #909292;
 }
 
-.badgeRow {
+ .badgeRow {
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -92,7 +92,7 @@ body {
   color: var(--muted);
 }
 
-.stateBox {
+ .stateBox {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,7 +103,7 @@ body {
   margin-top: 16px;
 }
 
-.grid {
+ .grid {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -111,7 +111,7 @@ body {
   margin-top: 22px;
 }
 
-.card {
+ .card {
   width: 240px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
