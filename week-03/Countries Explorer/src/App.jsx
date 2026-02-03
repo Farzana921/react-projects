@@ -75,52 +75,105 @@ export default function App() {
   return (
     <div className="container">
       {/* HEADER */}
-      <div className="header">
+      <motion.div
+        className="header"
+        initial="hidden"
+        animate="show"
+        variants={{
+          hidden: {},
+          show: { transition: { staggerChildren: 0.12 } },
+        }}
+      >
         <div>
-          <h1>Countries Explorer</h1>
-          <p className="subtitle">
+          <motion.h1
+            initial={{ opacity: 0, y: -18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            Countries Explorer
+          </motion.h1>
+
+          <motion.p
+            className="subtitle"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.08 }}
+          >
             Search and filter countries using the REST Countries API
-          </p>
+          </motion.p>
         </div>
-      </div>
+      </motion.div>
 
       {/* CONTROLS */}
-      <div className="controls">
-        <input
+      <motion.div
+        className="controls"
+        initial="hidden"
+        animate="show"
+        variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+          },
+        }}
+      >
+        <motion.input
           className="input"
           type="text"
           placeholder="Search by country name..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          variants={{
+            hidden: { opacity: 0, y: 10 },
+            show: { opacity: 1, y: 0 },
+          }}
+          transition={{ type: "spring", stiffness: 260, damping: 18 }}
         />
 
-        <select
+        <motion.select
           className="select"
           value={region}
           onChange={(e) => setRegion(e.target.value)}
+          variants={{
+            hidden: { opacity: 0, y: 10 },
+            show: { opacity: 1, y: 0 },
+          }}
+          transition={{ type: "spring", stiffness: 260, damping: 18 }}
         >
           {REGIONS.map((r) => (
             <option key={r} value={r}>
               {r}
             </option>
           ))}
-        </select>
+        </motion.select>
 
-        <button
+        <motion.button
           className="button"
           onClick={handleClearFilters}
           disabled={!search && region === "all"}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.96 }}
+          variants={{
+            hidden: { opacity: 0, y: 10 },
+            show: { opacity: 1, y: 0 },
+          }}
+          transition={{ type: "spring", stiffness: 260, damping: 18 }}
         >
           Clear filters
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
 
       {/* BADGES */}
-      <div className="badgeRow">
+      <motion.div
+        className="badgeRow"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.3 }}
+      >
         <span className="badge">🌍 Region: <strong>{region}</strong></span>
         <span className="badge">🔍 Search: <strong>{search || "—"}</strong></span>
         <span className="badge">📦 Results: <strong>{countries.length}</strong></span>
-      </div>
+      </motion.div>
 
       {/* STATES */}
       {loading && (
@@ -132,9 +185,7 @@ export default function App() {
       {error && (
         <div className="stateBox">
           <p>Error: {error}</p>
-          <button className="button" onClick={handleRetry}>
-            Retry
-          </button>
+          <button className="button" onClick={handleRetry}>Retry</button>
         </div>
       )}
 
@@ -147,13 +198,7 @@ export default function App() {
       {/* GRID */}
       <AnimatePresence mode="popLayout">
         {!loading && !error && countries.length > 0 && (
-          <motion.div
-            className="grid"
-            layout
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
+          <motion.div className="grid" layout>
             {countries.map((country) => (
               <CountryCard
                 key={country?.cca3 || country?.name?.common}
