@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function CountryCard({ country }) {
   const name = country?.name?.common ?? "Unknown";
   const region = country?.region ?? "Unknown";
@@ -7,7 +9,14 @@ export default function CountryCard({ country }) {
   const flagAlt = country?.flags?.alt || `${name} flag`;
 
   return (
-    <div className="card">
+    <motion.div
+      className="card"
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -6, scale: 1.03 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
+      layout
+    >
       {flagUrl ? (
         <img
           className="flag"
@@ -32,6 +41,6 @@ export default function CountryCard({ country }) {
           <strong>{population.toLocaleString()}</strong>
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
