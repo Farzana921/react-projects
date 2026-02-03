@@ -62,5 +62,3 @@ https://restcountries.com/v3.1/region/{region}
 ### Filtered Results
 ![Filtered Results](screenshots/results.png)
 
-Create a screenshots folder in the project root and place the images there.
-
