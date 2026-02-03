@@ -1,4 +1,4 @@
-body { background: rgba(52, 59, 84, 0.943) !important; }
+body { background: rgba(105, 105, 106, 0.943) !important; }
 :root {
   --bg: #0b1020;
   --panel: rgba(255, 255, 255, 0.06);
@@ -30,7 +30,7 @@ body { background: rgba(52, 59, 84, 0.943) !important; }
   text-align: center;
 }
 
-/* HEADER */
+
 .header {
   display: flex;
   justify-content: center;
@@ -42,7 +42,7 @@ body { background: rgba(52, 59, 84, 0.943) !important; }
   font-size: 14px;
 }
 
-/* CONTROLS */
+
 .controls {
   display: flex;
   justify-content: center;
@@ -75,7 +75,7 @@ body { background: rgba(52, 59, 84, 0.943) !important; }
   background: var(--panel-2);
 }
 
-/* BADGES */
+
 .badgeRow {
   display: flex;
   justify-content: center;
@@ -93,7 +93,7 @@ body { background: rgba(52, 59, 84, 0.943) !important; }
   color: var(--muted);
 }
 
-/* STATES */
+
 .stateBox {
   display: flex;
   flex-direction: column;
@@ -105,7 +105,7 @@ body { background: rgba(52, 59, 84, 0.943) !important; }
   margin-top: 14px;
 }
 
-/* GRID */
+
 .grid {
   display: flex;
   justify-content: center;
@@ -113,8 +113,7 @@ body { background: rgba(52, 59, 84, 0.943) !important; }
   gap: 16px;
   margin-top: 18px;
 }
-
-/* CARD */
+ 
 .card {
   width: 240px;
   border-radius: var(--radius);
@@ -159,5 +158,59 @@ body { background: rgba(52, 59, 84, 0.943) !important; }
 
 .select option {
   color: #fff;
-  background: #5b6588;
+  background: rgba(105, 105, 106, 0.943);
+}
+.skeleton {
+  overflow: hidden;
+}
+
+.skeletonBox,
+.skeletonLine {
+  position: relative;
+  background: rgba(255,255,255,0.08);
+}
+
+.skeletonLine {
+  height: 12px;
+  border-radius: 10px;
+  margin: 10px auto;
+  width: 80%;
+}
+
+.skeletonLine.small {
+  width: 60%;
+}
+
+.skeletonBox::after,
+.skeletonLine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.18),
+    transparent
+  );
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+.card:hover {
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+.card {
+  background: rgba(255, 255, 255, 0.12);
+}
+.title {
+  color: #fff;
+}
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

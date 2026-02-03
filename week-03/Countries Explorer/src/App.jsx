@@ -6,7 +6,7 @@ import "./App.css";
 const REGIONS = ["all", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 export default function App() {
-  // ✅ Required state
+  //state
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -60,10 +60,10 @@ export default function App() {
     }
   }
 
-  // ✅ Mandatory useEffect
+  //useEffect
   useEffect(() => {
     fetchCountries();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+ 
   }, [search, region, retryKey]);
 
   function handleRetry() {
@@ -77,7 +77,7 @@ export default function App() {
 
   return (
     <div className="container">
-      {/* HEADER */}
+      {/*HEADER */}
       <div className="header">
         <div>
           <h1>Countries Explorer</h1>
@@ -118,10 +118,10 @@ export default function App() {
       <div className="badgeRow">
         <span className="badge">🌍 Region: <strong>{region}</strong></span>
         <span className="badge">
-          🔍 Search: <strong>{search || "—"}</strong>
+           Search: <strong>{search || "—"}</strong>
         </span>
         <span className="badge">
-          📦 Results: <strong>{countries.length}</strong>
+           Results: <strong>{countries.length}</strong>
         </span>
       </div>
 
@@ -160,4 +160,19 @@ export default function App() {
       )}
     </div>
   );
+  {loading && (
+  <div className="grid">
+    {Array.from({ length: 8 }).map((_, i) => (
+      <div className="card skeleton" key={i}>
+        <div className="flag skeletonBox" />
+        <div className="cardBody">
+          <div className="skeletonLine" />
+          <div className="skeletonLine small" />
+          <div className="skeletonLine small" />
+        </div>
+      </div>
+    ))}
+  </div>
+)}
+
 }
