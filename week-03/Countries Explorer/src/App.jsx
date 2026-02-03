@@ -5,6 +5,18 @@ import "./App.css";
 
 const REGIONS = ["all", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
+// ✅ Debounce hook (500ms default)
+function useDebouncedValue(value, delay = 500) {
+  const [debounced, setDebounced] = useState(value);
+
+  useEffect(() => {
+    const id = setTimeout(() => setDebounced(value), delay);
+    return () => clearTimeout(id);
+  }, [value, delay]);
+
+  return debounced;
+}
+
 export default function App() {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -12,6 +24,9 @@ export default function App() {
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("all");
   const [retryKey, setRetryKey] = useState(0);
+
+  // ✅ Debounced value used for fetching
+  const debouncedSearch = useDebouncedValue(search, 500);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -21,7 +36,7 @@ export default function App() {
       setError(null);
 
       try {
-        const s = search.trim();
+        const s = debouncedSearch.trim();
         const shouldSearch = s.length >= 2;
 
         let url = "https://restcountries.com/v3.1/all";
@@ -47,6 +62,7 @@ export default function App() {
         const data = await res.json();
         const list = Array.isArray(data) ? data : [];
 
+        // If both search + region, filter search results by region client-side
         const filtered =
           shouldSearch && region !== "all"
             ? list.filter(
@@ -57,7 +73,6 @@ export default function App() {
 
         setCountries(filtered);
       } catch (err) {
-        // Ignore AbortError (happens when user types fast / effect re-runs)
         if (err.name !== "AbortError") {
           setError(err.message || "Something went wrong");
         }
@@ -67,10 +82,8 @@ export default function App() {
     }
 
     fetchCountries();
-
-    // Cleanup: cancel the request if effect re-runs or component unmounts
     return () => controller.abort();
-  }, [search, region, retryKey]);
+  }, [debouncedSearch, region, retryKey]);
 
   function handleRetry() {
     setRetryKey((k) => k + 1);
@@ -209,6 +222,9 @@ export default function App() {
       {!loading && !error && countries.length === 0 && (
         <div className="stateBox">
           <p>No results found.</p>
+          <p style={{ marginTop: 8, opacity: 0.8, fontSize: 13 }}>
+            Tip: type at least 2 letters to search.
+          </p>
         </div>
       )}
 
