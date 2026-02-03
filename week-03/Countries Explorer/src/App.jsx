@@ -5,14 +5,13 @@ import "./App.css";
 const REGIONS = ["all", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 export default function App() {
-  // ✅ Mandatory state
+  // ✅ Required state
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("all");
 
-  // For Retry button
   const [retryKey, setRetryKey] = useState(0);
 
   async function fetchCountries() {
@@ -21,8 +20,6 @@ export default function App() {
 
     try {
       const s = search.trim();
-
-      // Optional: only search if length >= 2
       const shouldSearch = s.length >= 2;
 
       let url = "https://restcountries.com/v3.1/all";
@@ -35,35 +32,34 @@ export default function App() {
 
       const res = await fetch(url);
 
-      // If searching by name and nothing found, API returns 404
       if (!res.ok) {
         if (res.status === 404) {
           setCountries([]);
           return;
         }
-        throw new Error(`Request failed (${res.status})`);
+        throw new Error("Failed to fetch countries");
       }
 
       const data = await res.json();
       const list = Array.isArray(data) ? data : [];
 
-      // If BOTH search and region are used: filter client-side by region
       const filtered =
         shouldSearch && region !== "all"
           ? list.filter(
-              (c) => (c?.region ?? "").toLowerCase() === region.toLowerCase()
+              (c) =>
+                (c?.region ?? "").toLowerCase() === region.toLowerCase()
             )
           : list;
 
       setCountries(filtered);
     } catch (err) {
-      setError(err?.message || "Something went wrong");
+      setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
   }
 
-  // ✅ Mandatory: useEffect with dependency array [search, region]
+  // ✅ Mandatory useEffect
   useEffect(() => {
     fetchCountries();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -80,18 +76,31 @@ export default function App() {
 
   return (
     <div className="container">
-      <h1>Countries Explorer</h1>
+      {/* HEADER */}
+      <div className="header">
+        <div>
+          <h1>Countries Explorer</h1>
+          <p className="subtitle">
+            Search and filter countries using the REST Countries API
+          </p>
+        </div>
+      </div>
 
-      {/* ✅ UI Controls (Mandatory) */}
+      {/* CONTROLS */}
       <div className="controls">
         <input
+          className="input"
           type="text"
           placeholder="Search by country name..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        <select value={region} onChange={(e) => setRegion(e.target.value)}>
+        <select
+          className="select"
+          value={region}
+          onChange={(e) => setRegion(e.target.value)}
+        >
           {REGIONS.map((r) => (
             <option key={r} value={r}>
               {r}
@@ -99,24 +108,45 @@ export default function App() {
           ))}
         </select>
 
-        <button onClick={handleClearFilters}>Clear filters</button>
+        <button className="button" onClick={handleClearFilters}>
+          Clear filters
+        </button>
       </div>
 
-      {/* ✅ Loading + Error UI (Mandatory) */}
-      {loading && <p>Loading countries...</p>}
+      {/* STATUS BADGES */}
+      <div className="badgeRow">
+        <span className="badge">🌍 Region: <strong>{region}</strong></span>
+        <span className="badge">
+          🔍 Search: <strong>{search || "—"}</strong>
+        </span>
+        <span className="badge">
+          📦 Results: <strong>{countries.length}</strong>
+        </span>
+      </div>
 
-      {error && (
-        <div className="errorBox">
-          <p>Error: {error}</p>
-          <button onClick={handleRetry}>Retry</button>
+      {/* STATES */}
+      {loading && (
+        <div className="stateBox">
+          <p>Loading countries...</p>
         </div>
       )}
 
-      {/* ✅ Countries List UI (Mandatory) */}
-      {!loading && !error && countries.length === 0 && (
-        <p>No results found.</p>
+      {error && (
+        <div className="stateBox">
+          <p>Error: {error}</p>
+          <button className="button" onClick={handleRetry}>
+            Retry
+          </button>
+        </div>
       )}
 
+      {!loading && !error && countries.length === 0 && (
+        <div className="stateBox">
+          <p>No results found.</p>
+        </div>
+      )}
+
+      {/* GRID */}
       {!loading && !error && countries.length > 0 && (
         <div className="grid">
           {countries.map((country) => (

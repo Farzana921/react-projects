@@ -9,14 +9,29 @@ export default function CountryCard({ country }) {
   return (
     <div className="card">
       {flagUrl ? (
-        <img className="flag" src={flagUrl} alt={flagAlt} loading="lazy" />
+        <img
+          className="flag"
+          src={flagUrl}
+          alt={flagAlt}
+          loading="lazy"
+        />
       ) : (
-        <div className="flag placeholder">No flag</div>
+        <div className="flag" />
       )}
 
-      <h3 className="title">{name}</h3>
-      <p className="meta">Region: {region}</p>
-      <p className="meta">Population: {population.toLocaleString()}</p>
+      <div className="cardBody">
+        <h3 className="title">{name}</h3>
+
+        <p className="meta">
+          <span>Region</span>
+          <strong>{region}</strong>
+        </p>
+
+        <p className="meta">
+          <span>Population</span>
+          <strong>{population.toLocaleString()}</strong>
+        </p>
+      </div>
     </div>
   );
 }

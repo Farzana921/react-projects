@@ -1,71 +1,154 @@
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: system-ui, Arial, sans-serif;
+:root {
+  --bg: #0b1020;
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel-2: rgba(255, 255, 255, 0.1);
+  --text: rgba(255, 255, 255, 0.95);
+  --muted: rgba(255, 255, 255, 0.65);
+  --border: rgba(255, 255, 255, 0.15);
+  --radius: 16px;
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
 }
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(1000px 600px at 10% -10%, rgba(99,102,241,0.35), transparent 60%),
+              radial-gradient(800px 500px at 90% 10%, rgba(16,185,129,0.25), transparent 55%),
+              var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+  text-align: center;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* CONTROLS */
 .controls {
   display: flex;
+  justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin: 14px 0 18px;
+  margin: 20px 0;
 }
 
-.controls input,
-.controls select {
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  min-width: 220px;
-}
-
-.controls button {
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  background: white;
-  cursor: pointer;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 14px;
-}
-
-.card {
-  border: 1px solid #eee;
+.input,
+.select,
+.button {
+  height: 44px;
+  padding: 0 14px;
   border-radius: 14px;
-  padding: 12px;
-  background: white;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.button {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.button:hover {
+  background: var(--panel-2);
+}
+
+/* BADGES */
+.badgeRow {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.badge {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* STATES */
+.stateBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-top: 14px;
+}
+
+/* GRID */
+.grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+/* CARD */
+.card {
+  width: 240px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--panel);
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
 }
 
 .flag {
   width: 100%;
   height: 140px;
   object-fit: cover;
-  border-radius: 12px;
-  background: #f5f5f5;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.flag.placeholder {
-  display: grid;
-  place-items: center;
-  color: #666;
+.cardBody {
+  padding: 12px;
 }
 
 .title {
-  margin: 10px 0 6px;
+  margin: 0 0 6px;
+  font-size: 16px;
 }
 
 .meta {
   margin: 0;
-}
-
-.errorBox {
-  border: 1px solid #ffb3c7;
-  border-radius: 12px;
-  padding: 12px;
-  background: #fff5f7;
+  font-size: 13px;
+  color: var(--muted);
+  display: flex;
+  justify-content: center;
+  gap: 8px;
 }
