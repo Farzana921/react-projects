@@ -5,7 +5,6 @@ import "./App.css";
 
 const REGIONS = ["all", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
-// ✅ Debounce hook (500ms default)
 function useDebouncedValue(value, delay = 500) {
   const [debounced, setDebounced] = useState(value);
 
@@ -25,7 +24,6 @@ export default function App() {
   const [region, setRegion] = useState("all");
   const [retryKey, setRetryKey] = useState(0);
 
-  // ✅ Debounced value used for fetching
   const debouncedSearch = useDebouncedValue(search, 500);
 
   useEffect(() => {
@@ -61,8 +59,6 @@ export default function App() {
 
         const data = await res.json();
         const list = Array.isArray(data) ? data : [];
-
-        // If both search + region, filter search results by region client-side
         const filtered =
           shouldSearch && region !== "all"
             ? list.filter(
@@ -72,7 +68,7 @@ export default function App() {
             : list;
 
         setCountries(filtered);
-      } catch (err) {
+     } catch (err) {
         if (err.name !== "AbortError") {
           setError(err.message || "Something went wrong");
         }
@@ -81,7 +77,7 @@ export default function App() {
       }
     }
 
-    fetchCountries();
+ fetchCountries();
     return () => controller.abort();
   }, [debouncedSearch, region, retryKey]);
 
@@ -193,13 +189,13 @@ export default function App() {
         transition={{ duration: 0.4, delay: 0.3 }}
       >
         <span className="badge">
-          🌍 Region: <strong>{region}</strong>
+         Region: <strong>{region}</strong>
         </span>
         <span className="badge">
-          🔍 Search: <strong>{search || "—"}</strong>
+         Search: <strong>{search || "—"}</strong>
         </span>
         <span className="badge">
-          📦 Results: <strong>{countries.length}</strong>
+          Results: <strong>{countries.length}</strong>
         </span>
       </motion.div>
 
