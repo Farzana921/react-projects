@@ -1,42 +1,71 @@
-#root {
-  max-width: 1280px;
+.container {
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 20px;
+  font-family: system-ui, Arial, sans-serif;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 14px 0 18px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.controls input,
+.controls select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  min-width: 220px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.controls button {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
 }
 
 .card {
-  padding: 2em;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 12px;
+  background: white;
 }
 
-.read-the-docs {
-  color: #888;
+.flag {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #f5f5f5;
+}
+
+.flag.placeholder {
+  display: grid;
+  place-items: center;
+  color: #666;
+}
+
+.title {
+  margin: 10px 0 6px;
+}
+
+.meta {
+  margin: 0;
+}
+
+.errorBox {
+  border: 1px solid #ffb3c7;
+  border-radius: 12px;
+  padding: 12px;
+  background: #fff5f7;
 }
