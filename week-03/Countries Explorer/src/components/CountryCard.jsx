@@ -18,12 +18,7 @@ export default function CountryCard({ country }) {
       layout
     >
       {flagUrl ? (
-        <img
-          className="flag"
-          src={flagUrl}
-          alt={flagAlt}
-          loading="lazy"
-        />
+        <img className="flag" src={flagUrl} alt={flagAlt} loading="lazy" />
       ) : (
         <div className="flag" />
       )}
