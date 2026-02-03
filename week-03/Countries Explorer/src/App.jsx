@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import CountryCard from "./components/CountryCard";
 import "./App.css";
-
 
 const REGIONS = ["all", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 export default function App() {
-  //state
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("all");
-
   const [retryKey, setRetryKey] = useState(0);
 
   async function fetchCountries() {
@@ -60,10 +58,9 @@ export default function App() {
     }
   }
 
-  //useEffect
   useEffect(() => {
     fetchCountries();
- 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, region, retryKey]);
 
   function handleRetry() {
@@ -77,7 +74,7 @@ export default function App() {
 
   return (
     <div className="container">
-      {/*HEADER */}
+      {/* HEADER */}
       <div className="header">
         <div>
           <h1>Countries Explorer</h1>
@@ -109,20 +106,20 @@ export default function App() {
           ))}
         </select>
 
-        <button className="button" onClick={handleClearFilters}>
+        <button
+          className="button"
+          onClick={handleClearFilters}
+          disabled={!search && region === "all"}
+        >
           Clear filters
         </button>
       </div>
 
-      {/* STATUS BADGES */}
+      {/* BADGES */}
       <div className="badgeRow">
         <span className="badge">🌍 Region: <strong>{region}</strong></span>
-        <span className="badge">
-           Search: <strong>{search || "—"}</strong>
-        </span>
-        <span className="badge">
-           Results: <strong>{countries.length}</strong>
-        </span>
+        <span className="badge">🔍 Search: <strong>{search || "—"}</strong></span>
+        <span className="badge">📦 Results: <strong>{countries.length}</strong></span>
       </div>
 
       {/* STATES */}
@@ -148,31 +145,24 @@ export default function App() {
       )}
 
       {/* GRID */}
-      {!loading && !error && countries.length > 0 && (
-        <div className="grid">
-          {countries.map((country) => (
-            <CountryCard
-              key={country?.cca3 || country?.name?.common}
-              country={country}
-            />
-          ))}
-        </div>
-      )}
+      <AnimatePresence mode="popLayout">
+        {!loading && !error && countries.length > 0 && (
+          <motion.div
+            className="grid"
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {countries.map((country) => (
+              <CountryCard
+                key={country?.cca3 || country?.name?.common}
+                country={country}
+              />
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
-  {loading && (
-  <div className="grid">
-    {Array.from({ length: 8 }).map((_, i) => (
-      <div className="card skeleton" key={i}>
-        <div className="flag skeletonBox" />
-        <div className="cardBody">
-          <div className="skeletonLine" />
-          <div className="skeletonLine small" />
-          <div className="skeletonLine small" />
-        </div>
-      </div>
-    ))}
-  </div>
-)}
-
 }
