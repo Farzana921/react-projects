@@ -13,54 +13,63 @@ export default function App() {
   const [region, setRegion] = useState("all");
   const [retryKey, setRetryKey] = useState(0);
 
-  async function fetchCountries() {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const s = search.trim();
-      const shouldSearch = s.length >= 2;
-
-      let url = "https://restcountries.com/v3.1/all";
-
-      if (shouldSearch) {
-        url = `https://restcountries.com/v3.1/name/${encodeURIComponent(s)}`;
-      } else if (region !== "all") {
-        url = `https://restcountries.com/v3.1/region/${encodeURIComponent(region)}`;
-      }
-
-      const res = await fetch(url);
-
-      if (!res.ok) {
-        if (res.status === 404) {
-          setCountries([]);
-          return;
-        }
-        throw new Error("Failed to fetch countries");
-      }
-
-      const data = await res.json();
-      const list = Array.isArray(data) ? data : [];
-
-      const filtered =
-        shouldSearch && region !== "all"
-          ? list.filter(
-              (c) =>
-                (c?.region ?? "").toLowerCase() === region.toLowerCase()
-            )
-          : list;
-
-      setCountries(filtered);
-    } catch (err) {
-      setError(err.message || "Something went wrong");
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
+    const controller = new AbortController();
+
+    async function fetchCountries() {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const s = search.trim();
+        const shouldSearch = s.length >= 2;
+
+        let url = "https://restcountries.com/v3.1/all";
+
+        if (shouldSearch) {
+          url = `https://restcountries.com/v3.1/name/${encodeURIComponent(s)}`;
+        } else if (region !== "all") {
+          url = `https://restcountries.com/v3.1/region/${encodeURIComponent(
+            region
+          )}`;
+        }
+
+        const res = await fetch(url, { signal: controller.signal });
+
+        if (!res.ok) {
+          if (res.status === 404) {
+            setCountries([]);
+            return;
+          }
+          throw new Error("Failed to fetch countries");
+        }
+
+        const data = await res.json();
+        const list = Array.isArray(data) ? data : [];
+
+        const filtered =
+          shouldSearch && region !== "all"
+            ? list.filter(
+                (c) =>
+                  (c?.region ?? "").toLowerCase() === region.toLowerCase()
+              )
+            : list;
+
+        setCountries(filtered);
+      } catch (err) {
+        // Ignore AbortError (happens when user types fast / effect re-runs)
+        if (err.name !== "AbortError") {
+          setError(err.message || "Something went wrong");
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+
     fetchCountries();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // Cleanup: cancel the request if effect re-runs or component unmounts
+    return () => controller.abort();
   }, [search, region, retryKey]);
 
   function handleRetry() {
@@ -170,9 +179,15 @@ export default function App() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3 }}
       >
-        <span className="badge">🌍 Region: <strong>{region}</strong></span>
-        <span className="badge">🔍 Search: <strong>{search || "—"}</strong></span>
-        <span className="badge">📦 Results: <strong>{countries.length}</strong></span>
+        <span className="badge">
+          🌍 Region: <strong>{region}</strong>
+        </span>
+        <span className="badge">
+          🔍 Search: <strong>{search || "—"}</strong>
+        </span>
+        <span className="badge">
+          📦 Results: <strong>{countries.length}</strong>
+        </span>
       </motion.div>
 
       {/* STATES */}
@@ -185,7 +200,9 @@ export default function App() {
       {error && (
         <div className="stateBox">
           <p>Error: {error}</p>
-          <button className="button" onClick={handleRetry}>Retry</button>
+          <button className="button" onClick={handleRetry}>
+            Retry
+          </button>
         </div>
       )}
 
