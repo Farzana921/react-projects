@@ -5,7 +5,7 @@ export default function RootLayout() {
   return (
     <div>
       <Navbar />
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: 16 }}>
+      <div className="container">
         <Outlet />
       </div>
     </div>
