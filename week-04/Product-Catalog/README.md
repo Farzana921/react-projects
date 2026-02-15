@@ -104,7 +104,7 @@ src/
 Clone the repository:
 
 
-git clone https://github.com/Farzana921/YOUR-REPO-NAME.git
+git clone https://github.com/Farzana921/react-projects/tree/main/week-04/Product-Catalog
 
 cd YOUR-REPO-NAME
 npm install
