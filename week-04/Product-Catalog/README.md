@@ -1,75 +1,51 @@
 # 🛍️ Week 4 Assignment – React Router v7 Product Catalog
 
-This project is a multi-page Product Catalog built using **React Router v7**.
-
-The application demonstrates nested routing, dynamic routes, and navigation using React Router.
-
----
-
-## 🚀 Functional Requirements Implemented
-
-### 1️⃣ Routes
-
-The app includes the following routes:
-
-- `/` → Home Page  
-- `/products` → Products Layout + Product List  
-- `/products/:id` → Product Details (Dynamic Route)  
-- `*` → 404 Not Found Page  
+A multi-page Product Catalog built using **React Router v7** demonstrating:
+- Nested routes
+- Dynamic routes
+- Navigation with active styling
 
 ---
 
-### 2️⃣ Navigation
+##  Functional Requirements Implemented
 
-- A top navigation bar is visible on all pages.
-- Uses `NavLink` for navigation.
-- Active link styling is applied.
+### 1) Routes
+- `/` → Home Page
+- `/products` → Products Layout + Product List
+- `/products/:id` → Product Details (dynamic route)
+- `*` → 404 Not Found
 
----
+### 2) Navigation
+- Top navigation bar visible on all pages
+- Links: Home, Products
+- Uses `NavLink` with active style
 
-### 3️⃣ Products Data
+### 3) Products Data
+- Local array (no API)
+- Minimum 6 products
+- Each product has: `id`, `name`, `price`, `category`, `description`
 
-- Local products array (no API used).
-- Minimum 6 products.
-- Each product includes:
-  - `id`
-  - `name`
-  - `price`
-  - `category`
-  - `description`
+### 4) Nested Routes
+- `/products` is a layout route (container)
+- Shows:
+  - Heading
+  - Short description / placeholder
+  - `<Outlet />` where nested content renders
+- Both Product List and Product Details render inside this layout
 
----
+### 5) Product List Page
+- Displays products in a clean grid/list
+- Each product has a “View Details” link to `/products/:id`
 
-### 4️⃣ Nested Routes
-
-- `/products` acts as a layout route.
-- Includes:
-  - Page heading
-  - Description placeholder
-  - `<Outlet />` for nested rendering
-- Product List and Product Details render inside the layout.
-
----
-
-### 5️⃣ Product List Page
-
-- Displays all products in a responsive grid.
-- Each product includes a "View Details" button.
-- Routes to `/products/:id`.
+### 6) Product Details Page
+- Reads `id` using `useParams()`
+- Displays: name, price, category, description
+- Back button uses `useNavigate(-1)`
+- Invalid id shows “Product not found” + link to `/products`
 
 ---
 
-### 6️⃣ Product Details Page
-
-- Uses `useParams()` to read product ID.
-- Displays selected product details.
-- Includes Back button using `useNavigate(-1)`.
-- Handles invalid IDs with a professional "Product not found" message.
-
----
-
-## 🧠 React Router Concepts Used
-
+##  React Router Concepts Used
 - `createBrowserRouter`
 - `RouterProvider`
 - Nested Routes
@@ -80,40 +56,33 @@ The app includes the following routes:
 
 ---
 
-## 📂 Project Structure
-
+##  Project Structure
 
 src/
-├── components/
-│ └── Navbar.jsx
-├── pages/
-│ ├── Home.jsx
-│ ├── ProductsLayout.jsx
-│ ├── ProductsList.jsx
-│ ├── ProductDetails.jsx
-│ └── NotFound.jsx
-├── data/
-│ └── products.js
-└── main.jsx
+components/
+Navbar.jsx
+pages/
+Home.jsx
+ProductsLayout.jsx
+ProductsList.jsx
+ProductDetails.jsx
+NotFound.jsx
+RootLayout.jsx
+data/
+products.js
+main.jsx
 
 
 ---
 
-## 🛠️ Installation & Running
+## 🛠️ Run the Project
+From this folder:
+`week-04/Product-Catalog`
 
-Clone the repository:
-
-
-git clone https://github.com/Farzana921/react-projects/tree/main/week-04/Product-Catalog
-
-cd YOUR-REPO-NAME
+```bash
 npm install
 npm run dev
+👩‍💻 Author
 
-
----
-
-## 👩‍💻 Author
-
-Farzana  
+Farzana
 GitHub: https://github.com/Farzana921
