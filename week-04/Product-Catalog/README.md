@@ -1,16 +1,119 @@
-# React + Vite
+# 🛍️ Week 4 Assignment – React Router v7 Product Catalog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a multi-page Product Catalog built using **React Router v7**.
 
-Currently, two official plugins are available:
+The application demonstrates nested routing, dynamic routes, and navigation using React Router.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Functional Requirements Implemented
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1️⃣ Routes
 
-## Expanding the ESLint configuration
+The app includes the following routes:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `/` → Home Page  
+- `/products` → Products Layout + Product List  
+- `/products/:id` → Product Details (Dynamic Route)  
+- `*` → 404 Not Found Page  
+
+---
+
+### 2️⃣ Navigation
+
+- A top navigation bar is visible on all pages.
+- Uses `NavLink` for navigation.
+- Active link styling is applied.
+
+---
+
+### 3️⃣ Products Data
+
+- Local products array (no API used).
+- Minimum 6 products.
+- Each product includes:
+  - `id`
+  - `name`
+  - `price`
+  - `category`
+  - `description`
+
+---
+
+### 4️⃣ Nested Routes
+
+- `/products` acts as a layout route.
+- Includes:
+  - Page heading
+  - Description placeholder
+  - `<Outlet />` for nested rendering
+- Product List and Product Details render inside the layout.
+
+---
+
+### 5️⃣ Product List Page
+
+- Displays all products in a responsive grid.
+- Each product includes a "View Details" button.
+- Routes to `/products/:id`.
+
+---
+
+### 6️⃣ Product Details Page
+
+- Uses `useParams()` to read product ID.
+- Displays selected product details.
+- Includes Back button using `useNavigate(-1)`.
+- Handles invalid IDs with a professional "Product not found" message.
+
+---
+
+## 🧠 React Router Concepts Used
+
+- `createBrowserRouter`
+- `RouterProvider`
+- Nested Routes
+- `<Outlet />`
+- `useParams()`
+- `useNavigate()`
+- `NavLink`
+
+---
+
+## 📂 Project Structure
+
+
+src/
+├── components/
+│ └── Navbar.jsx
+├── pages/
+│ ├── Home.jsx
+│ ├── ProductsLayout.jsx
+│ ├── ProductsList.jsx
+│ ├── ProductDetails.jsx
+│ └── NotFound.jsx
+├── data/
+│ └── products.js
+└── main.jsx
+
+
+---
+
+## 🛠️ Installation & Running
+
+Clone the repository:
+
+
+git clone https://github.com/Farzana921/YOUR-REPO-NAME.git
+
+cd YOUR-REPO-NAME
+npm install
+npm run dev
+
+
+---
+
+## 👩‍💻 Author
+
+Farzana  
+GitHub: https://github.com/Farzana921
