@@ -75,6 +75,16 @@ main.jsx
 
 ---
 
+---
+
+## 📸 Screenshots
+
+### Products Page
+![Products Page](./screenshots/products.png)
+
+### Home Page
+![Home Page](./screenshots/home.png)
+
 ## 🛠️ Run the Project
 From this folder:
 `week-04/Product-Catalog`
