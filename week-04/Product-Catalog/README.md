@@ -77,7 +77,7 @@ main.jsx
 
 ---
 
-## 📸 Screenshots
+##  Screenshots
 
 ### Products Page
 ![Products Page](./screenshots/products.png)
@@ -85,13 +85,17 @@ main.jsx
 ### Home Page
 ![Home Page](./screenshots/home.png)
 
-## 🛠️ Run the Project
+##  Run the Project
 From this folder:
 `week-04/Product-Catalog`
 
 ```bash
 npm install
 npm run dev
+
+
+
+
 👩‍💻 Author
 
 Farzana
