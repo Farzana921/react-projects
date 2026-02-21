@@ -1,18 +1,17 @@
 /* App.css */
 
-/* Reset any Vite template constraints */
-html, body, #root {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+* {
+  box-sizing: border-box;
 }
 
 #root {
-  max-width: none !important;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  max-width: none;
 }
 
-/* Center the page */
+/* Center page */
 .page {
   min-height: 100vh;
   width: 100%;
@@ -25,6 +24,7 @@ html, body, #root {
     #0b1220;
 }
 
+/* Card */
 .card {
   width: 100%;
   max-width: 460px;
@@ -35,10 +35,6 @@ html, body, #root {
   padding: 22px;
   color: #f7f7f7;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-}
-
-* {
-  box-sizing: border-box;
 }
 
 .header h2 {
