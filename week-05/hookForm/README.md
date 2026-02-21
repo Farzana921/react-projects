@@ -4,7 +4,7 @@ Simple registration form built with React Hook Form and Yup validation.
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 ```bash
 npm install
@@ -30,21 +30,14 @@ http://localhost:5173
 
 ---
 
-## 🖼️ Output
 
-Add your screenshot here:
+ ##  Output
 
-```
-/public/output.png
-```
-
-It will appear below:
-
-![Output](./hookForm.png)
+ ![Output](./hookForm.png)
 
 ---
 
-## 🛠 Tech
+##  Tech
 
 * React (Vite)
 * React Hook Form
