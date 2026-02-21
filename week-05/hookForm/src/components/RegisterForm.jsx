@@ -57,7 +57,7 @@ export default function RegisterForm() {
             <label>Full Name</label>
             <input
               className={errors.fullName ? "input error" : "input"}
-              placeholder="John Doe"
+              placeholder="Farzana Akbari"
               {...register("fullName")}
             />
             {errors.fullName && <span className="errorText">{errors.fullName.message}</span>}
@@ -68,7 +68,7 @@ export default function RegisterForm() {
             <input
               type="email"
               className={errors.email ? "input error" : "input"}
-              placeholder="john@example.com"
+              placeholder="farzanaakbari@gmail.com"
               {...register("email")}
             />
             {errors.email && <span className="errorText">{errors.email.message}</span>}
