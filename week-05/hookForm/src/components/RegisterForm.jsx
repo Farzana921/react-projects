@@ -25,9 +25,7 @@ const schema = yup.object().shape({
     .required("Confirm Password is required")
     .oneOf([yup.ref("password")], "Passwords must match"),
 
-  terms: yup
-    .boolean()
-    .oneOf([true], "You must accept Terms & Conditions"),
+  terms: yup.boolean().oneOf([true], "You must accept Terms & Conditions"),
 });
 
 export default function RegisterForm() {
@@ -38,9 +36,7 @@ export default function RegisterForm() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
     console.log(data);
@@ -49,50 +45,76 @@ export default function RegisterForm() {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "0 auto" }}>
-      <h2>Register Form</h2>
-
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label>Full Name</label>
-          <input {...register("fullName")} />
-          <p style={{ color: "red" }}>{errors.fullName?.message}</p>
+    <div className="page">
+      <div className="card">
+        <div className="header">
+          <h2>Create your account</h2>
+          <p>Fill in your details to register.</p>
         </div>
 
-        <div>
-          <label>Email</label>
-          <input type="email" {...register("email")} />
-          <p style={{ color: "red" }}>{errors.email?.message}</p>
-        </div>
+        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+          <div className="field">
+            <label>Full Name</label>
+            <input
+              className={errors.fullName ? "input error" : "input"}
+              placeholder="John Doe"
+              {...register("fullName")}
+            />
+            {errors.fullName && <span className="errorText">{errors.fullName.message}</span>}
+          </div>
 
-        <div>
-          <label>Password</label>
-          <input type="password" {...register("password")} />
-          <p style={{ color: "red" }}>{errors.password?.message}</p>
-        </div>
+          <div className="field">
+            <label>Email</label>
+            <input
+              type="email"
+              className={errors.email ? "input error" : "input"}
+              placeholder="john@example.com"
+              {...register("email")}
+            />
+            {errors.email && <span className="errorText">{errors.email.message}</span>}
+          </div>
 
-        <div>
-          <label>Confirm Password</label>
-          <input type="password" {...register("confirmPassword")} />
-          <p style={{ color: "red" }}>
-            {errors.confirmPassword?.message}
-          </p>
-        </div>
+          <div className="field">
+            <label>Password</label>
+            <input
+              type="password"
+              className={errors.password ? "input error" : "input"}
+              placeholder="At least 8 chars + 1 number"
+              {...register("password")}
+            />
+            {errors.password && <span className="errorText">{errors.password.message}</span>}
+          </div>
 
-        <div>
-          <label>
-            <input type="checkbox" {...register("terms")} />
-            Accept Terms & Conditions
-          </label>
-          <p style={{ color: "red" }}>{errors.terms?.message}</p>
-        </div>
+          <div className="field">
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              className={errors.confirmPassword ? "input error" : "input"}
+              placeholder="Re-enter password"
+              {...register("confirmPassword")}
+            />
+            {errors.confirmPassword && (
+              <span className="errorText">{errors.confirmPassword.message}</span>
+            )}
+          </div>
 
-        <button type="submit">Register</button>
-      </form>
+          <div className="termsRow">
+            <label className="checkboxLabel">
+              <input type="checkbox" {...register("terms")} />
+              <span>
+                I agree to the <b>Terms & Conditions</b>
+              </span>
+            </label>
+          </div>
+          {errors.terms && <span className="errorText">{errors.terms.message}</span>}
 
-      {successMessage && (
-        <p style={{ color: "green" }}>{successMessage}</p>
-      )}
+          <button className="btn" type="submit">
+            Register
+          </button>
+
+          {successMessage && <div className="success">{successMessage}</div>}
+        </form>
+      </div>
     </div>
   );
 }

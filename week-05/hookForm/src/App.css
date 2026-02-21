@@ -1,42 +1,129 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* App.css */
+* {
+  box-sizing: border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(1000px 600px at 20% 10%, #e9f0ff 0%, transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, #ffe9f2 0%, transparent 55%),
+    #0b1220;
 }
 
 .card {
-  padding: 2em;
+  width: 100%;
+  max-width: 460px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 22px;
+  color: #f7f7f7;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
-.read-the-docs {
-  color: #888;
+.header h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  letter-spacing: 0.2px;
+}
+
+.header p {
+  margin: 0 0 18px;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.form {
+  display: grid;
+  gap: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+label {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.07);
+  color: white;
+  outline: none;
+  transition: 0.15s ease;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.input:focus {
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.input.error {
+  border-color: rgba(255, 80, 120, 0.9);
+  box-shadow: 0 0 0 3px rgba(255, 80, 120, 0.18);
+}
+
+.errorText {
+  font-size: 12px;
+  color: #ff9ab0;
+}
+
+.termsRow {
+  margin-top: 4px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  opacity: 0.95;
+}
+
+.checkboxLabel input {
+  width: 16px;
+  height: 16px;
+  accent-color: #8ab4ff;
+}
+
+.btn {
+  margin-top: 6px;
+  width: 100%;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #0b1220;
+  background: linear-gradient(135deg, #8ab4ff, #ff9ab0);
+  transition: 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.success {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(80, 255, 170, 0.12);
+  border: 1px solid rgba(80, 255, 170, 0.25);
+  color: #b7ffd9;
+  font-size: 13px;
 }
