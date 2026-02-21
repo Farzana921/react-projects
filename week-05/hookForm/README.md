@@ -40,7 +40,7 @@ Add your screenshot here:
 
 It will appear below:
 
-![Output](./public/hookForm.png)
+![Output](./hookForm.png)
 
 ---
 
