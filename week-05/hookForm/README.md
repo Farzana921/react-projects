@@ -33,7 +33,7 @@ http://localhost:5173
 
  ##  Output
 
- ![Output](./hookForm0.png)
+ ![Output](./hookForm.png)
 
 ---
 
