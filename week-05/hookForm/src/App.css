@@ -13,14 +13,14 @@
 
 .page {
   min-height: 100vh;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 24px;
-  background: radial-gradient(1000px 600px at 20% 10%, #e9f0ff 0%, transparent 60%),
-    radial-gradient(900px 500px at 80% 20%, #ffe9f2 0%, transparent 55%),
-    #0b1220;
+  background:
+    radial-gradient(circle at 30% 25%, #22d3ee55, transparent 45%),
+    radial-gradient(circle at 70% 75%, #06b6d455, transparent 45%),
+    #000000;
 }
 
 /* Card */
@@ -137,7 +137,4 @@ label {
   border: 1px solid rgba(80, 255, 170, 0.25);
   color: #b7ffd9;
   font-size: 13px;
-}
-.page {
-  background: linear-gradient(135deg, #0f172a, #1e293b);
 }
