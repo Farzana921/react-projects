@@ -19,7 +19,7 @@ http://localhost:5173
 
 ---
 
-## ✨ Features
+## Features
 
 * React Hook Form
 * Yup validation
