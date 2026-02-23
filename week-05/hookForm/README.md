@@ -47,4 +47,4 @@ http://localhost:5173
 
 ## 👩‍💻 Author
 
-Farzana Akbari
+Farzana Akbari ❤️
